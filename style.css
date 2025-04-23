@@ -5,19 +5,30 @@
 }
 
 body{
-    background-color: black !important;
+    background-color:#0984e3 !important;
     display:flex;
     justify-content: center;
     align-items: center;
 }
 
 .container{
+    margin-top: 2em !important;
     background-color: white !important;
     width: 70%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
+}
+
+.boxes {
+    display:flex;
+}
+
+.boxes h1{
+    margin-right: 1em !important;
 }
