@@ -16,6 +16,7 @@ body{
     background-color: white !important;
     width: 70%;
     height: 100%;
+    padding: 0 5em !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,4 +32,63 @@ body{
 
 .boxes h1{
     margin-right: 1em !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.boxes {
+    display: flex;
+    padding: 2em;
+
+    align-items: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+
+.boxes a h1:hover {
+    transform: scale(1.1);
+    color: WHITE;
+}
+
+/* Optional section styles */
+section {
+    padding: 100px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+.boxes {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+  
+    margin: 40px 0;
+}
+
+.boxes a {
+    text-decoration: none;
+}
+
+.boxes h1 {
+    padding: 30px 30px !important;
+    background-color: #0984e3;
+    border-radius: 10px;
+
+    font-size: 1rem;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   
+    text-align: center;
+    cursor: pointer;
+}
+
+.boxes h1:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px);
+    background-color: #066cb9;
 }
