@@ -1,4 +1,4 @@
-alert("Bonjor")
+
 
 const buttons = document.querySelectorAll('.toggle-btn');
 
