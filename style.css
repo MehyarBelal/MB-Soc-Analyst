@@ -189,3 +189,38 @@ text-align: left !important;
   .boxes{
     display:none;
   }
+
+
+  .dashboard-content {
+
+    margin-bottom: 1rem !important;
+    padding: 4rem !important;
+    border: 1px solid black !important;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+  .dashboard-content p {
+    margin: .7rem 0 !important;
+  }
+
+  #labs section{
+    margin: 8rem 0 !important;
+  }
+
+
+  .dashboard-item{ 
+    border: none !important;
+  }
+
+  .toggle-btn{
+    border: none !important;
+    box-shadow: none;
+text-align: center !important;
+  }
+
+  .header{
+    padding: 1rem 0 !important;
+    border: 1px solid black;
+    width: 100%;
+    
+  }
