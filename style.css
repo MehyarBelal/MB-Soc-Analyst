@@ -69,29 +69,7 @@ section {
     margin: 40px 0;
 }
 
-.boxes a {
-    text-decoration: none;
-}
 
-.boxes h1 {
-    padding: 30px 30px !important;
-    background-color: #0984e3;
-    border-radius: 10px;
-
-    font-size: 1rem;
-    color: #ffffff;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   
-    text-align: center;
-    cursor: pointer;
-}
-
-.boxes h1:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-    transform: translateY(-3px);
-    background-color: #066cb9;
-}
 
 .intro {
    
@@ -187,10 +165,7 @@ text-align: left !important;
     color:white;
   }
 
-  .boxes{
-    display:none;
-  }
-
+ 
 
   .dashboard-content {
 
@@ -228,6 +203,13 @@ text-align: center !important;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
 
+footer{
+  background-color: #27292b;
+  color:white !important;
+  padding: 1rem 0 !important;
+}
+
+
   .header h3{
     font-weight: 800;
     font-size: 1.5em;
@@ -243,3 +225,26 @@ text-align: center !important;
     border-bottom: none;
    
   }
+
+  svg {
+    width: 50px;
+    height: 50px;
+     /* Set the color for the icons */
+     margin-left: .5rem !important;
+     padding: 1rem !important;
+}
+
+svg:hover{
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  cursor: pointer;
+
+  
+}
+
+
+.boxes{
+  display:flex;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 3em 0 !important;
+}
