@@ -81,6 +81,25 @@
             <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
         </div>
     </div>
+
+
+    <div class="dashboard-item">
+
+
+      <button class="toggle-btn">Dashboard 2 – SSH Attempts</button>
+      <div class="dashboard-content">
+        <button class="close-btn" style="color:black !important">X</button>
+          <img src="./ssh_tunnel_tutorial_checking_ip_address_in_linux-f_mobile.jpg" alt="Dashboard 1" width="100%">
+          <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
+
+          <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
+          <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
+
+
+          <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
+          <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
+      </div>
+  </div>
     
       </div>
 
@@ -243,6 +262,18 @@
         });
     });
 });
+
+// Close popup when clicking outside the popup (on overlay)
+const overlay = document.querySelector('.overlay');
+if (overlay) {
+    overlay.addEventListener('click', function () {
+        const popups = document.querySelectorAll('.dashboard-content');
+        // Close all popups and hide overlay
+        popups.forEach(popup => popup.classList.remove('active'));
+        overlay.classList.remove('active');
+    });
+}
+
 </script>
    
 
