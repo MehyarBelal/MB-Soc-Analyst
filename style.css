@@ -203,9 +203,8 @@ text-align: center !important;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
 
-footer{
-  background-color: #27292b;
-  color:white !important;
+footer, .boxes{
+
   padding: 1rem 0 !important;
 }
 
@@ -227,11 +226,12 @@ footer{
   }
 
   svg {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
      /* Set the color for the icons */
-     margin: 1rem !important;
-     padding: 0.7rem !important;
+     margin: 0.5rem !important;
+     padding: 0.3rem !important;
+     fill:#0984e3;
 
 }
 
@@ -247,7 +247,7 @@ svg:hover{
   display:flex;
   justify-content: center !important;
   align-items: center !important;
-  padding: 3em 0 !important;
+  padding: 1.5em 0 !important;
 }
 
 /* Add these styles for the popup content */
