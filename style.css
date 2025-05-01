@@ -180,7 +180,7 @@ text-align: center !important;
   }
 
   #labs section{
-    margin: 8rem 0 !important;
+    margin: 5rem 0 !important;
   }
 
 
@@ -386,4 +386,10 @@ svg:hover{
   display: block;
   opacity: 1;
   visibility: visible;
+}
+
+
+.title{
+  margin-bottom: 0rem !important;
+  font-size: 1.9rem !important;
 }
