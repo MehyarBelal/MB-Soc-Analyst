@@ -6,6 +6,8 @@
     <title>Mehyar Belal | Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="icon" href="./ChatGPT Image May 1, 2025, 06_13_34 PM.png" type="image/png">
+<!-- Prism.js CSS (default light theme) -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -70,17 +72,38 @@
 
         <button class="toggle-btn">Brute-Force Login Analysis (Splunk)</button>
         <div class="dashboard-content">
-          <button class="close-btn" style="color:black !important">X</button>
-            <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-            <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
+            <h2 style="text-align: center; margin-bottom: 15px !important;">🔐 Brute-Force Login Analysis (Splunk)</h2>
+<br>
+            <button class="close-btn">X</button>
+        
+            <p><strong>Summary:</strong> I detected brute-force login attempts using SPL queries in Splunk and built a detection rule to flag suspicious behavior.</p>
+            
+            <p><strong>Skills:</strong> Threat Detection, Log Analysis, Incident Response<br>
+            <strong>Tools:</strong> Splunk, SPL, Ubuntu</p>
+        
 
-            <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-            <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
-
-
-            <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-            <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
-        </div>
+            <br>
+            <br>
+            <h4>🔍 Discovery</h4>
+            <p>While reviewing authentication logs in Splunk, I noticed an unusual spike in failed login attempts from a single IP targeting various user accounts.</p>
+        
+            <h4>🧪 Investigation</h4>
+            <p>I used the following SPL to identify and pivot on suspicious login patterns:</p>
+            <pre><code class="language-spl language-bash">
+                index=auth sourcetype=linux_secure "Failed password"
+                | stats count by src_ip, user
+                | where count > 10
+                </code></pre>
+                
+        <br>
+            <h4>🛠️ Response</h4>
+            <p>I created a correlation search in Splunk to trigger alerts when brute-force behavior is detected. I also developed a dashboard panel to monitor login attempts by IP and username.</p>
+        
+            <h4>✅ Outcome</h4>
+            <p>This lab improved my ability to detect real-world credential stuffing behavior using custom SPL and gave me experience with rule tuning and dashboarding.</p>
+        
+            <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Splunk Dashboard" width="100%" style="margin-top: 10px;">
+          </div>
     </div>
 
 
@@ -370,5 +393,9 @@ if (overlay) {
 
 
     <footer> Designed & created by Mehyar Belal</footer>
+
+    <!-- Prism.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
 </body>
 </html>

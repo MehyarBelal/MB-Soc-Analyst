@@ -393,3 +393,19 @@ svg:hover{
   margin-bottom: 0rem !important;
   font-size: 1.9rem !important;
 }
+
+.dashboard-content{
+  text-align: left !important;
+}
+
+
+code.language-spl {
+  display: block;
+  background: #272822;
+  color: #f8f8f2;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  font-size: 0.9rem;
+  white-space: pre;
+}
