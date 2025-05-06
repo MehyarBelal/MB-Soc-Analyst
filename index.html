@@ -135,43 +135,81 @@
 
         <section id="home-soc-lab">  <h2>Home SOC Lab</h2>
 
-           
             <div class="dashboard-item">
+                <button class="toggle-btn">Network Intrusion Detection (Snort + Splunk)</button>
+                <div class="dashboard-content" id="popup2">
+                    <h2 style="text-align: center; margin-bottom: 15px !important;">🛡️ Network Intrusion Detection (Snort + Splunk)</h2>
+                    <br>
+                    <button class="close-btn">X</button>
+            
+                    <p><strong>Summary:</strong> I configured Snort in IDS mode on my Ubuntu VM to detect suspicious network activity, including port scans and malicious traffic. I ensured Snort runs automatically at startup, integrated alerts with Splunk for centralized log analysis, and validated detections using real-world scans.</p>
+            
+                    <p><strong>Skills:</strong> Network Security, IDS Configuration, Log Analysis, SIEM Integration, Linux Service Management<br>
+                    <strong>Tools:</strong> Snort, Splunk, Ubuntu, tcpdump</p>
+            
+                    <br><br>
+                    <h4>🔍 Discovery</h4>
+                    <p>I installed Snort in IDS mode and configured it to monitor <code>enp0s3</code>, the primary external interface on my Ubuntu VM. I confirmed that Snort was logging to <code>/var/log/snort/alert</code> and actively inspecting live packets.</p>
+                   
+                 
+            
+                    <h4>🧪 Investigation</h4>
+                    <p>I launched a stealth TCP SYN scan using <code>nmap -sS</code> targeting port 80 of the same VM to simulate a reconnaissance attempt. Snort successfully triggered the local rule I wrote to detect any TCP SYN packet:</p>
+            
+                  
+<p>I simulated a reconnaissance attack by launching a stealth TCP SYN scan using <code>nmap</code> from a separate machine:</p>
 
+<pre><code class="language-bash">
+nmap -sS -Pn -p 80 192.168.1.100
+</code></pre>
 
-                <button class="toggle-btn">Home Lab - Web Login Attack Analysis</button>
-                <div class="dashboard-content">
-                  <button class="close-btn" style="color:black !important">X</button>
-                    <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-                    <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
-        
-                    <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-                    <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
-        
-        
-                    <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-                    <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
+<p>This scan targeted port 80 of the Snort-monitored VM. The scan triggered the custom local rule I wrote to detect any TCP SYN packet directed to any host or port. The detection appeared in the console and was also forwarded to Splunk:</p>
+
+                    
+                    
+                    <p><strong>Screenshot – Snort Live Console:</strong></p>
+                    <img src="./snort/snort capture.png" alt="Snort Alert in Console" width="100%">
+                    <p><strong>Screenshot – Alert Triggered in Splunk:</strong></p>
+                    <img src="./snort/splunk event.png" alt="Splunk showing Snort alert" width="100%">
+            
+                    <h4>⚙️ Automation</h4>
+                    <p>I created a systemd service to run Snort in daemon mode at boot:</p>
+                    <pre><code class="language-bash">
+            [Unit]
+            Description=Snort IDS Daemon
+            After=network.target
+            
+            [Service]
+            ExecStart=/usr/sbin/snort -c /etc/snort/snort.conf -i enp0s3 -D
+            ExecReload=/bin/kill -HUP $MAINPID
+            Restart=on-failure
+            
+            [Install]
+            WantedBy=multi-user.target
+                    </code></pre>
+                    <p><strong>Commands used:</strong></p>
+                    <pre><code class="language-bash">
+            sudo cp snort.service /etc/systemd/system/
+            sudo systemctl daemon-reload
+            sudo systemctl enable snort
+            sudo systemctl start snort
+                    </code></pre>
+            
+                    <h4>📡 Splunk Integration</h4>
+                    <p>I installed the Splunk Universal Forwarder and configured it to monitor <code>/var/log/snort/alert</code>. Snort alerts were forwarded in real-time to my Splunk instance for centralized monitoring.</p>
+                    <p><strong>Screenshot – Splunk Alert Dashboard:</strong></p>
+                    <img src="img/splunk-snort-integration.png" alt="Splunk and Snort Log View" width="100%">
+            
+                    <h4>✅ Outcome</h4>
+                    <p>This lab demonstrated my ability to configure and automate a real intrusion detection system, write custom rules, simulate attacks, and integrate with a SIEM for alert monitoring — key skills for SOC roles and real-world threat detection.</p>
+            
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Snort_Logo.png/600px-Snort_Logo.png" alt="Snort IDS" width="100%" style="margin-top: 10px;">
                 </div>
             </div>
+            
+            
 
-
-            <div class="dashboard-item">
-
-
-                <button class="toggle-btn">Home Lab - Multi-User Login Tracking</button>
-                <div class="dashboard-content">
-                  <button class="close-btn" style="color:black !important">X</button>
-                    <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-                    <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
-        
-                    <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-                    <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
-        
-        
-                    <img src="https://www.splunk.com/content/dam/splunk-blogs/images/en_us/2022/09/dash-gb-hero-min.png" alt="Dashboard 1" width="100%">
-                    <p>This dashboard tracks failed and successful login attempts using Splunk search queries. It visualizes brute-force patterns and helps identify malicious IPs.</p>
-                </div>
-            </div>
+            
             <section id="#splunk-dashboards">  <h2>Spunk Dashboards</h2>
             
                 <div class="dashboard-item">
