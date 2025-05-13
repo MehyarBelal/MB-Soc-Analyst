@@ -62,6 +62,136 @@
 
        <h1 class="title">Soc Analyst Work</h1>
 <div class="overlay"></div>
+
+
+  <section id="home-soc-lab">  <h2>Home SOC Lab</h2>
+
+            <div class="dashboard-item">
+                <button class="toggle-btn">Network Intrusion Detection (Snort + Splunk)</button>
+                <div class="dashboard-content" id="popup2">
+                    <h2 style="text-align: center; margin-bottom: 15px !important;">🛡️ Network Intrusion Detection (Snort + Splunk)</h2>
+                    <br>
+                    <button class="close-btn">X</button>
+            
+                    <p><strong>Summary:</strong> I configured Snort in IDS mode on my Ubuntu VM to detect suspicious network activity, including port scans and malicious traffic. I ensured Snort runs automatically at startup, integrated alerts with Splunk for centralized log analysis, and validated detections using real-world scans.</p>
+            
+                    <p><strong>Skills:</strong> Network Security, IDS Configuration, Log Analysis, SIEM Integration, Linux Service Management<br>
+                    <strong>Tools:</strong> Snort, Splunk, Nmap, Ubuntu, tcpdump</p>
+            
+                    <br><br>
+                    <h4>🔍 Discovery</h4>
+                    <p>I installed Snort in IDS mode and configured it to monitor <code>enp0s3</code>, the primary external interface on my Ubuntu VM. I confirmed that Snort was logging to <code>/var/log/snort/alert</code> and actively inspecting live packets.</p>
+                   
+                 
+            
+                    <h4>🧪 Investigation</h4>
+                    <p>I launched a stealth TCP SYN scan using <code>nmap -sS</code> targeting port 80 of the same VM to simulate a reconnaissance attempt. Snort successfully triggered the local rule I wrote to detect any TCP SYN packet:</p>
+            
+                  
+<p>I simulated a reconnaissance attack by launching a stealth TCP SYN scan using <code>nmap</code> from a separate machine:</p>
+
+<pre><code class="language-bash">
+nmap -sS -Pn -p 80 192.168.1.100
+</code></pre>
+
+<p>This scan targeted port 80 of the Snort-monitored VM. The scan triggered the custom local rule I wrote to detect any TCP SYN packet directed to any host or port. The detection appeared in the console and was also forwarded to Splunk:</p>
+
+                    
+                    
+                    <p><strong>Screenshot – Snort Live Console:</strong></p>
+                    <img src="./snort/snort capture.png" alt="Snort Alert in Console" width="100%">
+                    <p><strong>Screenshot – Alert Triggered in Splunk:</strong></p>
+                    <img src="./snort/splunk event.png" alt="Splunk showing Snort alert" width="100%">
+            
+                    <h4>⚙️ Automation</h4>
+                    <p>I created a systemd service to run Snort in daemon mode at boot:</p>
+                    <pre><code class="language-bash">
+            [Unit]
+            Description=Snort IDS Daemon
+            After=network.target
+            
+            [Service]
+            ExecStart=/usr/sbin/snort -c /etc/snort/snort.conf -i enp0s3 -D
+            ExecReload=/bin/kill -HUP $MAINPID
+            Restart=on-failure
+            
+            [Install]
+            WantedBy=multi-user.target
+                    </code></pre>
+                    <p><strong>Commands used:</strong></p>
+                    <pre><code class="language-bash">
+            sudo cp snort.service /etc/systemd/system/
+            sudo systemctl daemon-reload
+            sudo systemctl enable snort
+            sudo systemctl start snort
+                    </code></pre>
+            
+                    <h4>📡 Splunk Integration</h4>
+                    <p>I installed the Splunk Universal Forwarder and configured it to monitor <code>/var/log/snort/alert</code>. Snort alerts were forwarded in real-time to my Splunk instance for centralized monitoring.</p>
+                    <p><strong>Screenshot – Splunk Alert Dashboard:</strong></p>
+                    <img src="img/splunk-snort-integration.png" alt="Splunk and Snort Log View" width="100%">
+            
+                    <h4>✅ Outcome</h4>
+                    <p>This lab demonstrated my ability to configure and automate a real intrusion detection system, write custom rules, simulate attacks, and integrate with a SIEM for alert monitoring — key skills for SOC roles and real-world threat detection.</p>
+            
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Snort_Logo.png/600px-Snort_Logo.png" alt="Snort IDS" width="100%" style="margin-top: 10px;">
+                </div>
+            </div>
+            
+
+            <div class="dashboard-item">
+                <button class="toggle-btn">Vulnerability Scanning (Nessus)</button>
+                <div class="dashboard-content" id="popup-nessus">
+                    <h2 style="text-align: center; margin-bottom: 15px !important;">🔍 Vulnerability Scanning (Nessus Essentials)</h2>
+                    <br>
+                    <button class="close-btn">X</button>
+            
+                    <p><strong>Summary:</strong> I installed and configured Nessus Essentials on both a Linux VM and a Windows host to perform vulnerability assessments across my local network. I scanned various assets including my own machine and unknown IPs discovered using Nmap. The scans helped identify SSL misconfigurations, self-signed certificates, and missing patches.</p>
+            
+                    <p><strong>Skills:</strong> Vulnerability Assessment, Risk Analysis, Network Reconnaissance, Report Generation, CVSS Scoring<br>
+                    <strong>Tools:</strong> Nessus, Nmap, Windows 11, Ubuntu, CVE Database</p>
+            
+                    <br><br>
+                    <h4>🔍 Discovery</h4>
+                    <p>I installed Nessus Essentials on both Windows and Ubuntu to ensure consistent scanning capability across platforms. To discover targets on my LAN, I used Nmap with the following command:</p>
+            
+                    <pre><code class="language-bash">
+            nmap -sn 192.168.1.0/24
+                    </code></pre>
+                    <p>This revealed live IPs including 192.168.1.104, 192.168.1.130, and my local router (192.168.1.254). I selected these IPs as scan targets within Nessus.</p>
+            
+                    <h4>🧪 Investigation</h4>
+                    <p>Using Nessus, I created a <strong>Basic Network Scan</strong> targeting <code>127.0.0.1</code> and local IPs. One finding of interest was a <strong>Medium severity</strong> alert for a self-signed SSL certificate on Splunk’s management port (8089).</p>
+            
+                    <p><strong>Vulnerability:</strong> SSL Self-Signed Certificate<br>
+                    <strong>Plugin ID:</strong> 57582<br>
+                    <strong>CVSS Score:</strong> 6.5 (Medium)<br>
+                    <strong>Solution:</strong> Replace with a trusted CA certificate for production environments.</p>
+            
+                    <p><strong>Screenshot – Vulnerability Details:</strong></p>
+                    <img src="./nessus/vun ssl self assigned.png" alt="Nessus Self-Signed Cert Finding" width="100%" height: auto; max-height: 600px; >
+            
+                    <h4>⚙️ Automation</h4>
+                    <p>I configured Nessus to perform automated scans weekly. I set the schedule to run every Saturday at 8:00 PM and ensured results were stored for comparison. This mimics real-world vulnerability management practices in SOC environments.</p>
+            
+                    <p><strong>Screenshot – Scheduled Scan:</strong></p>
+                    <img src="./nessus/weekly scan schduedl .png" alt="Nessus Weekly Schedule" width="100%">
+            
+                    <h4>📊 Report Export</h4>
+                    <p>I exported scan results to PDF and CSV formats to practice communicating technical findings. These reports included CVE details, risk levels, remediation steps, and affected services.</p>
+            
+                    <h4>✅ Outcome</h4>
+                    <p>This lab strengthened my practical skills in identifying, analyzing, and reporting vulnerabilities using Nessus Essentials. I demonstrated foundational SOC tasks such as asset discovery, scanning, and triage of medium-severity findings like SSL issues. The experience reflects my hands-on knowledge of blue team tooling in real-world environments.</p>
+            
+                    <p><strong>CVE Reference:</strong> While this plugin does not map directly to a specific CVE, it is associated with risks like <code>CVE-2009-3555</code> (SSL/TLS renegotiation vulnerability), which can be exploited when weak SSL configurations or self-signed certificates are present.</p>
+
+                    <p><strong>Tags:</strong> Vulnerability Management, Nessus, CVE, SOC Lab, Cybersecurity Portfolio</p>
+
+                </div>
+            </div>
+            
+          
+
   <section id="splunk-dashboards">
     <h2>Splunk Labs</h2>
   
@@ -134,7 +264,6 @@ sudo ufw deny from 197.52.75.218
         <h4>✅ Outcome</h4>
         <p>This lab demonstrated how to detect and analyze SSH brute force activity using Splunk and multiple log sources. By correlating <code>linux_secure</code>, DNS, TCP, and IP logs — along with identifying the geographic origin via ISP metadata — I completed the full lifecycle of threat detection and documentation for this simulated incident.</p>
 
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Secure_Shell_logo.svg/500px-Secure_Shell_logo.svg.png" alt="SSH Security Overview" width="100%" style="margin-top: 10px;">
     </div>
 </div>
 
@@ -280,137 +409,7 @@ index=botsv3 sourcetype="cisco:asa" "Deny"
     </section>
 
 
-        <section id="home-soc-lab">  <h2>Home SOC Lab</h2>
-
-            <div class="dashboard-item">
-                <button class="toggle-btn">Network Intrusion Detection (Snort + Splunk)</button>
-                <div class="dashboard-content" id="popup2">
-                    <h2 style="text-align: center; margin-bottom: 15px !important;">🛡️ Network Intrusion Detection (Snort + Splunk)</h2>
-                    <br>
-                    <button class="close-btn">X</button>
-            
-                    <p><strong>Summary:</strong> I configured Snort in IDS mode on my Ubuntu VM to detect suspicious network activity, including port scans and malicious traffic. I ensured Snort runs automatically at startup, integrated alerts with Splunk for centralized log analysis, and validated detections using real-world scans.</p>
-            
-                    <p><strong>Skills:</strong> Network Security, IDS Configuration, Log Analysis, SIEM Integration, Linux Service Management<br>
-                    <strong>Tools:</strong> Snort, Splunk, Nmap, Ubuntu, tcpdump</p>
-            
-                    <br><br>
-                    <h4>🔍 Discovery</h4>
-                    <p>I installed Snort in IDS mode and configured it to monitor <code>enp0s3</code>, the primary external interface on my Ubuntu VM. I confirmed that Snort was logging to <code>/var/log/snort/alert</code> and actively inspecting live packets.</p>
-                   
-                 
-            
-                    <h4>🧪 Investigation</h4>
-                    <p>I launched a stealth TCP SYN scan using <code>nmap -sS</code> targeting port 80 of the same VM to simulate a reconnaissance attempt. Snort successfully triggered the local rule I wrote to detect any TCP SYN packet:</p>
-            
-                  
-<p>I simulated a reconnaissance attack by launching a stealth TCP SYN scan using <code>nmap</code> from a separate machine:</p>
-
-<pre><code class="language-bash">
-nmap -sS -Pn -p 80 192.168.1.100
-</code></pre>
-
-<p>This scan targeted port 80 of the Snort-monitored VM. The scan triggered the custom local rule I wrote to detect any TCP SYN packet directed to any host or port. The detection appeared in the console and was also forwarded to Splunk:</p>
-
-                    
-                    
-                    <p><strong>Screenshot – Snort Live Console:</strong></p>
-                    <img src="./snort/snort capture.png" alt="Snort Alert in Console" width="100%">
-                    <p><strong>Screenshot – Alert Triggered in Splunk:</strong></p>
-                    <img src="./snort/splunk event.png" alt="Splunk showing Snort alert" width="100%">
-            
-                    <h4>⚙️ Automation</h4>
-                    <p>I created a systemd service to run Snort in daemon mode at boot:</p>
-                    <pre><code class="language-bash">
-            [Unit]
-            Description=Snort IDS Daemon
-            After=network.target
-            
-            [Service]
-            ExecStart=/usr/sbin/snort -c /etc/snort/snort.conf -i enp0s3 -D
-            ExecReload=/bin/kill -HUP $MAINPID
-            Restart=on-failure
-            
-            [Install]
-            WantedBy=multi-user.target
-                    </code></pre>
-                    <p><strong>Commands used:</strong></p>
-                    <pre><code class="language-bash">
-            sudo cp snort.service /etc/systemd/system/
-            sudo systemctl daemon-reload
-            sudo systemctl enable snort
-            sudo systemctl start snort
-                    </code></pre>
-            
-                    <h4>📡 Splunk Integration</h4>
-                    <p>I installed the Splunk Universal Forwarder and configured it to monitor <code>/var/log/snort/alert</code>. Snort alerts were forwarded in real-time to my Splunk instance for centralized monitoring.</p>
-                    <p><strong>Screenshot – Splunk Alert Dashboard:</strong></p>
-                    <img src="img/splunk-snort-integration.png" alt="Splunk and Snort Log View" width="100%">
-            
-                    <h4>✅ Outcome</h4>
-                    <p>This lab demonstrated my ability to configure and automate a real intrusion detection system, write custom rules, simulate attacks, and integrate with a SIEM for alert monitoring — key skills for SOC roles and real-world threat detection.</p>
-            
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Snort_Logo.png/600px-Snort_Logo.png" alt="Snort IDS" width="100%" style="margin-top: 10px;">
-                </div>
-            </div>
-            
-
-            <div class="dashboard-item">
-                <button class="toggle-btn">Vulnerability Scanning (Nessus)</button>
-                <div class="dashboard-content" id="popup-nessus">
-                    <h2 style="text-align: center; margin-bottom: 15px !important;">🔍 Vulnerability Scanning (Nessus Essentials)</h2>
-                    <br>
-                    <button class="close-btn">X</button>
-            
-                    <p><strong>Summary:</strong> I installed and configured Nessus Essentials on both a Linux VM and a Windows host to perform vulnerability assessments across my local network. I scanned various assets including my own machine and unknown IPs discovered using Nmap. The scans helped identify SSL misconfigurations, self-signed certificates, and missing patches.</p>
-            
-                    <p><strong>Skills:</strong> Vulnerability Assessment, Risk Analysis, Network Reconnaissance, Report Generation, CVSS Scoring<br>
-                    <strong>Tools:</strong> Nessus, Nmap, Windows 11, Ubuntu, CVE Database</p>
-            
-                    <br><br>
-                    <h4>🔍 Discovery</h4>
-                    <p>I installed Nessus Essentials on both Windows and Ubuntu to ensure consistent scanning capability across platforms. To discover targets on my LAN, I used Nmap with the following command:</p>
-            
-                    <pre><code class="language-bash">
-            nmap -sn 192.168.1.0/24
-                    </code></pre>
-                    <p>This revealed live IPs including 192.168.1.104, 192.168.1.130, and my local router (192.168.1.254). I selected these IPs as scan targets within Nessus.</p>
-            
-                    <h4>🧪 Investigation</h4>
-                    <p>Using Nessus, I created a <strong>Basic Network Scan</strong> targeting <code>127.0.0.1</code> and local IPs. One finding of interest was a <strong>Medium severity</strong> alert for a self-signed SSL certificate on Splunk’s management port (8089).</p>
-            
-                    <p><strong>Vulnerability:</strong> SSL Self-Signed Certificate<br>
-                    <strong>Plugin ID:</strong> 57582<br>
-                    <strong>CVSS Score:</strong> 6.5 (Medium)<br>
-                    <strong>Solution:</strong> Replace with a trusted CA certificate for production environments.</p>
-            
-                    <p><strong>Screenshot – Vulnerability Details:</strong></p>
-                    <img src="./nessus/vun ssl self assigned.png" alt="Nessus Self-Signed Cert Finding" width="100%" height: auto; max-height: 600px; >
-            
-                    <h4>⚙️ Automation</h4>
-                    <p>I configured Nessus to perform automated scans weekly. I set the schedule to run every Saturday at 8:00 PM and ensured results were stored for comparison. This mimics real-world vulnerability management practices in SOC environments.</p>
-            
-                    <p><strong>Screenshot – Scheduled Scan:</strong></p>
-                    <img src="./nessus/weekly scan schduedl .png" alt="Nessus Weekly Schedule" width="100%">
-            
-                    <h4>📊 Report Export</h4>
-                    <p>I exported scan results to PDF and CSV formats to practice communicating technical findings. These reports included CVE details, risk levels, remediation steps, and affected services.</p>
-            
-                    <h4>✅ Outcome</h4>
-                    <p>This lab strengthened my practical skills in identifying, analyzing, and reporting vulnerabilities using Nessus Essentials. I demonstrated foundational SOC tasks such as asset discovery, scanning, and triage of medium-severity findings like SSL issues. The experience reflects my hands-on knowledge of blue team tooling in real-world environments.</p>
-            
-                    <p><strong>CVE Reference:</strong> While this plugin does not map directly to a specific CVE, it is associated with risks like <code>CVE-2009-3555</code> (SSL/TLS renegotiation vulnerability), which can be exploited when weak SSL configurations or self-signed certificates are present.</p>
-
-                    <p><strong>Tags:</strong> Vulnerability Management, Nessus, CVE, SOC Lab, Cybersecurity Portfolio</p>
-
-                </div>
-            </div>
-            
-            <br>
-            <br>
-
-             <br>
-            <br>
+      
 
             <section id="#splunk-dashboards" style="display:none">  <h2>Spunk Dashboards</h2>
             
