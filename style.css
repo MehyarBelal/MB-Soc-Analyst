@@ -1,7 +1,7 @@
 *{
     margin:0 !important;
     padding:0 !important;
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif !important;
 }
 
 body{
@@ -411,9 +411,8 @@ code.language-spl {
 }
 
 
-
-
-
-
+body {
+    font-family: 'Poppins', sans-serif !important;
+}
 
 
