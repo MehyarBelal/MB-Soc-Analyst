@@ -67,7 +67,77 @@
   
     <div class="dashboard-list">
   
-     
+     <div class="dashboard-item">
+    <button class="toggle-btn">SSH Brute Force Attack - Splunk + Linux Secure Logs</button>
+    <div class="dashboard-content" id="popup-ssh-brute">
+        <h2 style="text-align: center; margin-bottom: 15px !important;">🛡️ SSH Brute Force Detection - Splunk + Linux Secure Logs</h2>
+        <br>
+        <button class="close-btn">X</button>
+
+        <p><strong>Summary:</strong> I detected a brute force SSH attack in the BOTSv3 dataset using Splunk. The attacker IP <strong>197.52.75.218</strong> attempted to log in to the internal server <strong>mars.i-08e52f8b5a034012d</strong> (172.31.12.76) via SSH on port 22 using the invalid username <code>admin</code>. The attack originated from an IP block registered to <strong>TE Data, an Egyptian ISP</strong>, which is commonly seen in global brute force scan activity.</p>
+
+        <p><strong>Skills:</strong> SSH Brute Force Detection, Log Analysis, Threat Hunting, Splunk SPL, Network Security<br>
+        <strong>Tools:</strong> Splunk, BOTSv3 Dataset, Linux Secure Logs, stream:tcp, stream:ip, stream:dns</p>
+
+        <br><br>
+        <h4>🔍 Discovery</h4>
+        <p>The first red flag appeared in the <code>linux_secure</code> logs, showing reverse DNS failures:</p>
+
+        <pre><code class="language-bash">
+reverse mapping checking getaddrinfo for host-197.52.75.218.tedata.net [197.52.75.218] failed - POSSIBLE BREAK-IN ATTEMPT!
+        </code></pre>
+
+        <p><strong>Screenshot – Reverse DNS Failure in Splunk:</strong></p>
+        <img src="./brute/mapping.png" alt="Reverse Mapping Failure Log" width="100%">
+
+        <p>Soon after, the attacker attempted to login using an invalid user:</p>
+        <pre><code class="language-bash">
+Invalid user admin from 197.52.75.218 port 58357
+Connection closed by 197.52.75.218 port 58357 [preauth]
+        </code></pre>
+
+        <p><strong>Screenshot – Invalid User Attempt in Splunk:</strong></p>
+        <img src="./brute/connection closed.png" alt="Invalid SSH User Attempt Log" width="100%">
+
+        <h4>📡 Network Activity</h4>
+        <p>TCP stream logs showed a connection attempt on SSH port 22. The log confirmed that the attacker from <strong>TE Data (Egyptian ISP)</strong> successfully reached the SSH service on the server, but authentication failed.</p>
+
+        <pre><code class="language-bash">
+protocol_stack: ip:tcp:ssh
+src_ip: 197.52.75.218
+dest_ip: 172.31.12.76
+dest_port: 22
+        </code></pre>
+
+        <p><strong>Screenshot – SSH Connection Flow in Splunk:</strong></p>
+        <img src="./brute/nx.png" alt="TCP SSH Flow" width="100%">
+
+        <h4>🧪 Investigation</h4>
+        <p>DNS logs also showed queries and multiple <code>NXDOMAIN</code> replies, likely due to the attacker's scanning tools attempting to resolve internal or fake hostnames. These DNS requests also confirmed the IP’s association with the Egyptian ISP <code>tedata.net</code>, providing insight into geographic origin.</p>
+
+        <pre><code class="language-bash">
+query: host-197.52.75.218.tedata.net
+reply_code: NXDomain
+        </code></pre>
+
+
+        <h4>⚙️ Mitigation (Simulated)</h4>
+        <ul>
+            <li>Blocked attacker IP using UFW:</li>
+            <pre><code class="language-bash">
+sudo ufw deny from 197.52.75.218
+            </code></pre>
+            <li>Configured Fail2Ban to auto-block brute force attempts</li>
+            <li>Enforced key-based SSH authentication only</li>
+        </ul>
+
+        <h4>✅ Outcome</h4>
+        <p>This lab demonstrated how to detect and analyze SSH brute force activity using Splunk and multiple log sources. By correlating <code>linux_secure</code>, DNS, TCP, and IP logs — along with identifying the geographic origin via ISP metadata — I completed the full lifecycle of threat detection and documentation for this simulated incident.</p>
+
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Secure_Shell_logo.svg/500px-Secure_Shell_logo.svg.png" alt="SSH Security Overview" width="100%" style="margin-top: 10px;">
+    </div>
+</div>
+
 
 
    <div class="dashboard-item">
@@ -139,6 +209,65 @@ sudo ufw deny from 13.209.43.220
         <p>This lab demonstrated how to detect NXDOMAIN attacks using Splunk and the BOTSV3 dataset. By identifying the suspicious IPs, blocking them with a firewall, and preventing further DNS queries, I successfully mitigated the attack. This lab also showcased the importance of monitoring DNS traffic to prevent such attacks.</p>
 
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/DNS_Security.svg/500px-DNS_Security.svg.png" alt="NXDOMAIN Attack Overview" width="100%" style="margin-top: 10px;">
+    </div>
+</div>
+
+<div class="dashboard-item">
+    <button class="toggle-btn">C2 Beaconing Detection - Splunk + Cisco ASA</button>
+    <div class="dashboard-content" id="popup-c2">
+        <h2 style="text-align: center; margin-bottom: 15px !important;">🛡️ C2 Beaconing Detection - Splunk + Cisco ASA</h2>
+        <br>
+        <button class="close-btn">X</button>
+
+        <p><strong>Summary:</strong> I detected Command and Control (C2) beaconing activity in the BOTSv3 dataset using Splunk and Cisco ASA firewall logs. The internal host 192.168.9.50 attempted to reach the external IP 204.107.141.25 on port 4282 at regular intervals. This repeated outbound traffic is consistent with beaconing behavior, where malware tries to contact its control server.</p>
+
+        <p><strong>Skills:</strong> Network Threat Detection, Firewall Log Analysis, Splunk Search Language (SPL), C2 Beaconing Analysis<br>
+        <strong>Tools:</strong> Splunk, BOTSv3 Dataset, Cisco ASA, MITRE ATT&CK</p>
+
+        <br><br>
+        <h4>🔍 Discovery</h4>
+        <p>Using Splunk, I searched for repeated deny events in Cisco ASA firewall logs. I noticed that the internal host <strong>192.168.9.50</strong> was repeatedly denied outbound TCP connections to the same external IP <strong>204.107.141.25</strong> on port <strong>4282</strong>. The activity occurred at regular time intervals over several minutes.</p>
+
+        <p><strong>Splunk Search Query:</strong></p>
+        <pre><code class="language-bash">
+index=botsv3 sourcetype="cisco:asa" "Deny"
+| rex "src inside:(?&lt;src_ip&gt;\d+\.\d+\.\d+\.\d+)"
+| rex "dst outside:(?&lt;dst_ip&gt;\d+\.\d+\.\d+\.\d+)"
+| search dst_ip="204.107.141.25"
+| stats count by src_ip, dst_ip, _time
+        </code></pre>
+
+        <p>This confirmed that the firewall blocked all connection attempts, preventing the malware from establishing a C2 session.</p>
+
+        <p><strong>Screenshot – Splunk C2 Detection Query Results:</strong></p>
+        <img src="./c2_beaconing/splunk_beaconing_results.png" alt="Splunk Beaconing Search Results" width="100%">
+
+        <h4>🧪 Investigation</h4>
+        <p>The repeated, timed connection attempts to a non-standard external IP and port indicate malware beaconing behavior. The internal host <strong>192.168.9.50</strong> attempted to reach <strong>204.107.141.25</strong> multiple times per minute using increasing source ports, such as:</p>
+
+        <pre><code class="language-bash">
+192.168.9.50:63307 → 204.107.141.25:4282
+192.168.9.50:63310 → 204.107.141.25:4282
+192.168.9.50:63313 → 204.107.141.25:4282
+        </code></pre>
+
+        <p>I searched for malicious commands in <code>bash_history</code> to identify the infection source, but no relevant execution artifacts were found. This suggests that the lab focuses on network detection of beaconing rather than command-line evidence of malware execution.</p>
+
+        <p><strong>Screenshot – ASA Deny Logs in Splunk:</strong></p>
+        <img src="./deny logs.png" alt="ASA Deny Logs for C2" width="100%">
+
+        <h4>⚙️ Mitigation</h4>
+        <p>In a real environment, mitigation would involve:</p>
+        <ul>
+            <li>Isolating <strong>192.168.9.50</strong> from the network</li>
+            <li>Blocking the external IP <strong>204.107.141.25</strong> at the firewall</li>
+            <li>Scanning the host with EDR or antivirus tools</li>
+            <li>Reviewing related hosts for lateral movement or similar behavior</li>
+        </ul>
+
+        <h4>✅ Outcome</h4>
+        <p>This lab demonstrated how to detect C2 beaconing using Splunk and Cisco ASA logs. The suspicious host was identified, the communication pattern analyzed, and the external C2 IP flagged for malicious behavior. This scenario closely mimics real-world malware that attempts to maintain persistence via external control servers.</p>
+
     </div>
 </div>
 
@@ -277,10 +406,13 @@ nmap -sS -Pn -p 80 192.168.1.100
                 </div>
             </div>
             
-            
+            <br>
+            <br>
 
-            
-            <section id="#splunk-dashboards">  <h2>Spunk Dashboards</h2>
+             <br>
+            <br>
+
+            <section id="#splunk-dashboards" style="display:none">  <h2>Spunk Dashboards</h2>
             
                 <div class="dashboard-item">
 
