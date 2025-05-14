@@ -112,28 +112,31 @@ nmap -sS -Pn -p 80 192.168.1.100
                     <p><strong>Screenshot – Alert Triggered in Splunk:</strong></p>
                     <img src="./snort/splunk event.png" alt="Splunk showing Snort alert" width="100%">
             
-                    <h4>⚙️ Automation</h4>
-                    <p>I created a systemd service to run Snort in daemon mode at boot:</p>
-                    <pre><code class="language-bash">
-            [Unit]
-            Description=Snort IDS Daemon
-            After=network.target
-            
-            [Service]
-            ExecStart=/usr/sbin/snort -c /etc/snort/snort.conf -i enp0s3 -D
-            ExecReload=/bin/kill -HUP $MAINPID
-            Restart=on-failure
-            
-            [Install]
-            WantedBy=multi-user.target
-                    </code></pre>
-                    <p><strong>Commands used:</strong></p>
-                    <pre><code class="language-bash">
-            sudo cp snort.service /etc/systemd/system/
-            sudo systemctl daemon-reload
-            sudo systemctl enable snort
-            sudo systemctl start snort
-                    </code></pre>
+                 <h4>⚙️ Automation</h4>
+<p>I created a systemd service to run Snort in daemon mode at boot:</p>
+
+<pre><code class="language-bash">
+[Unit]
+Description=Snort IDS Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/snort -c /etc/snort/snort.conf -i enp0s3 -D
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+
+<p><strong>Commands used:</strong></p>
+
+<pre><code class="language-bash">
+sudo cp snort.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable snort
+sudo systemctl start snort
+</code></pre>
             
                     <h4>📡 Splunk Integration</h4>
                     <p>I installed the Splunk Universal Forwarder and configured it to monitor <code>/var/log/snort/alert</code>. Snort alerts were forwarded in real-time to my Splunk instance for centralized monitoring.</p>
@@ -491,28 +494,6 @@ index=botsv3 sourcetype="cisco:asa" "Deny"
     display: block;
 }
 
-pre {
-    margin: 16px auto !important;
-    padding: 0;
-    background: transparent;
-    border: none;
-}
-
-
-/* Optional: syntax highlighting for keywords (if you're not using Prism.js or Highlight.js) */
-.language-bash .keyword {
-    color: #569cd6;
-    font-weight: bold;
-}
-
-.language-bash .string {
-    color: #ce9178;
-}
-
-.language-bash .comment {
-    color: #6a9955;
-    font-style: italic;
-}
 
                  
               /* Styles for the popup content */
