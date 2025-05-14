@@ -515,3 +515,34 @@ code[class*=language-], pre[class*=language-] {
 .contact-details a:hover {
   color: #075088;
 }
+
+
+.scroll-arrow {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.arrow-icon {
+  width: 40px;
+  height: 40px;
+  fill: #0984e3;
+  animation: bounce 1.5s infinite;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon:hover {
+  fill: #075088;
+  transform: scale(1.2);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
