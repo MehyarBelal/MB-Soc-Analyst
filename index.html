@@ -26,12 +26,12 @@
 
     <div class="container">
    
-       <div class="header">
-        <h3>Mehyar Belal</h3>
-        <br>
-        <h4>Soc Analyst |  Cyber Secuity master's Graduate | Cybersecurity Enthusiast</h4>
-       </div>
-     
+ <div class="header hero-header" >
+<h3>Mehyar Belal</h3><br>
+<h4>SOC Analyst <span style="color:white;">·</span> Cybersecurity Master’s Graduate <span style="color:white;">·</span> Threat Detection & Blue Team Focused</h4>
+
+</div>
+
 
 <br>
 <br>
@@ -101,7 +101,7 @@
                     <p><strong>Skills:</strong> Network Security, IDS Configuration, Log Analysis, SIEM Integration, Linux Service Management<br>
                     <strong>Tools:</strong> Snort, Splunk, Nmap, Ubuntu, tcpdump</p>
             
-                    <br><br>
+                 
                     <h4>🔍 Discovery</h4>
                     <p>I installed Snort in IDS mode and configured it to monitor <code>enp0s3</code>, the primary external interface on my Ubuntu VM. I confirmed that Snort was logging to <code>/var/log/snort/alert</code> and actively inspecting live packets.</p>
                    
@@ -176,7 +176,7 @@ sudo systemctl start snort
                     <p><strong>Skills:</strong> Vulnerability Assessment, Risk Analysis, Network Reconnaissance, Report Generation, CVSS Scoring<br>
                     <strong>Tools:</strong> Nessus, Nmap, Windows 11, Ubuntu, CVE Database</p>
             
-                    <br><br>
+                   
                     <h4>🔍 Discovery</h4>
                     <p>I installed Nessus Essentials on both Windows and Ubuntu to ensure consistent scanning capability across platforms. To discover targets on my LAN, I used Nmap with the following command:</p>
             
@@ -234,7 +234,7 @@ sudo systemctl start snort
         <p><strong>Skills:</strong> SSH Brute Force Detection, Log Analysis, Threat Hunting, Splunk SPL, Network Security<br>
         <strong>Tools:</strong> Splunk, BOTSv3 Dataset, Linux Secure Logs, stream:tcp, stream:ip, stream:dns</p>
 
-        <br><br>
+       
         <h4>🔍 Discovery</h4>
         <p>The first red flag appeared in the <code>linux_secure</code> logs, showing reverse DNS failures:</p>
 
@@ -306,7 +306,7 @@ sudo ufw deny from 197.52.75.218
         <p><strong>Skills:</strong> DNS Enumeration, Splunk Log Analysis, Threat Detection, Network Security<br>
         <strong>Tools:</strong> Splunk, BOTSV3 Dataset, Nslookup, Nmap, Linux</p>
 
-        <br><br>
+   
         <h4>🔍 Discovery</h4>
         <p>Using the BOTSV3 dataset in Splunk, I identified multiple NXDOMAIN responses triggered by DNS queries for non-existent subdomains under brewertalk.com. These queries were logged with the IP addresses that initiated the requests.</p>
 
@@ -373,7 +373,7 @@ sudo ufw deny from 13.209.43.220
         <p><strong>Skills:</strong> Network Threat Detection, Firewall Log Analysis, Splunk Search Language (SPL), C2 Beaconing Analysis<br>
         <strong>Tools:</strong> Splunk, BOTSv3 Dataset, Cisco ASA, MITRE ATT&CK</p>
 
-        <br><br>
+    
         <h4>🔍 Discovery</h4>
         <p>Using Splunk, I searched for repeated deny events in Cisco ASA firewall logs. I noticed that the internal host <strong>192.168.9.50</strong> was repeatedly denied outbound TCP connections to the same external IP <strong>204.107.141.25</strong> on port <strong>4282</strong>. The activity occurred at regular time intervals over several minutes.</p>
 
