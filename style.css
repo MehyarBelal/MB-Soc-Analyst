@@ -403,7 +403,7 @@ code.language-spl {
   display: block;
   background: #272822;
   color: #f8f8f2;
-  padding: 12px;
+ 
   border-radius: 6px;
   font-family: monospace;
   font-size: 0.9rem;
@@ -412,4 +412,10 @@ code.language-spl {
 
 .dashboard-item img{
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+
+code[class*=language-], pre[class*=language-] {
+  padding: 0.5rem !important;
+  text-shadow: none !important;
 }
