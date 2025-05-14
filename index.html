@@ -152,13 +152,12 @@ sudo systemctl start snort
             
                     <h4>📡 Splunk Integration</h4>
                     <p>I installed the Splunk Universal Forwarder and configured it to monitor <code>/var/log/snort/alert</code>. Snort alerts were forwarded in real-time to my Splunk instance for centralized monitoring.</p>
-                    <p><strong>Screenshot – Splunk Alert Dashboard:</strong></p>
-                    <img src="img/splunk-snort-integration.png" alt="Splunk and Snort Log View" width="100%">
+                  
             
                     <h4>✅ Outcome</h4>
                     <p>This lab demonstrated my ability to configure and automate a real intrusion detection system, write custom rules, simulate attacks, and integrate with a SIEM for alert monitoring — key skills for SOC roles and real-world threat detection.</p>
             
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Snort_Logo.png/600px-Snort_Logo.png" alt="Snort IDS" width="100%" style="margin-top: 10px;">
+                 
                 </div>
             </div>
             
@@ -319,7 +318,7 @@ index=botsv3 sourcetype=aws:cloudwatchlogs "NXDOMAIN"
         <p>This search identified IP addresses that made more than 10 DNS queries in a short time period, which is indicative of a DNS enumeration attack. The IP addresses involved were flagged for further investigation.</p>
 
         <p><strong>Screenshot – Splunk Search Results for NXDOMAIN Attack:</strong></p>
-        <img src="./nxdomain/splunk_search_results.png" alt="NXDOMAIN Attack Search Results" width="100%">
+
 
         <h4>🧪 Investigation</h4>
         <p>The attack was identified through a pattern of repeated DNS queries for subdomains that do not exist (NXDOMAIN responses). I noticed several queries for non-existent subdomains, such as:</p>
@@ -343,8 +342,6 @@ src_ip       | count
 
         <p>These IP addresses initiated multiple queries for non-existent subdomains within a brief time frame, a common characteristic of **DNS enumeration** or **reconnaissance attacks**. The attacker is likely trying to find subdomains and test for misconfigured or vulnerable DNS records.</p>
 
-        <p><strong>Screenshot – Splunk Event Log for NXDOMAIN Attack:</strong></p>
-        <img src="./nxdomain/splunk_event_log.png" alt="Splunk Event Log for NXDOMAIN" width="100%">
 
         <h4>⚙️ Mitigation</h4>
         <p>To mitigate this attack, I blocked the suspicious IP addresses using the UFW (Uncomplicated Firewall) on the target server to prevent further queries from these attackers.</p>
@@ -355,13 +352,10 @@ sudo ufw deny from 13.209.8.105
 sudo ufw deny from 13.209.43.220
         </code></pre>
 
-        <p><strong>Screenshot – Firewall Block Configuration (UFW):</strong></p>
-        <img src="./nxdomain/firewall_block_config.png" alt="Firewall Block Configuration" width="100%">
 
         <h4>✅ Outcome</h4>
         <p>This lab demonstrated how to detect NXDOMAIN attacks using Splunk and the BOTSV3 dataset. By identifying the suspicious IPs, blocking them with a firewall, and preventing further DNS queries, I successfully mitigated the attack. This lab also showcased the importance of monitoring DNS traffic to prevent such attacks.</p>
 
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/DNS_Security.svg/500px-DNS_Security.svg.png" alt="NXDOMAIN Attack Overview" width="100%" style="margin-top: 10px;">
     </div>
 </div>
 
@@ -392,8 +386,7 @@ index=botsv3 sourcetype="cisco:asa" "Deny"
 
         <p>This confirmed that the firewall blocked all connection attempts, preventing the malware from establishing a C2 session.</p>
 
-        <p><strong>Screenshot – Splunk C2 Detection Query Results:</strong></p>
-        <img src="./c2_beaconing/splunk_beaconing_results.png" alt="Splunk Beaconing Search Results" width="100%">
+     
 
         <h4>🧪 Investigation</h4>
         <p>The repeated, timed connection attempts to a non-standard external IP and port indicate malware beaconing behavior. The internal host <strong>192.168.9.50</strong> attempted to reach <strong>204.107.141.25</strong> multiple times per minute using increasing source ports, such as:</p>
