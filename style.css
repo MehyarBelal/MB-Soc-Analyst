@@ -226,17 +226,19 @@ footer, .boxes{
   }
 
   svg {
-    width: 45px;
-    height: 45px;
+    width: 35px !important;
+    height: 35px !;
      /* Set the color for the icons */
      margin: 0.5rem !important;
      padding: 0.3rem !important;
+   
+     margin-top: 1.5rem;
      fill:#0984e3;
 
 }
 
 svg:hover{
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
   cursor: pointer;
 
   
@@ -247,7 +249,7 @@ svg:hover{
   display:flex;
   justify-content: center !important;
   align-items: center !important;
-  padding: 1.5em 0 !important;
+
 }
 
 /* Add these styles for the popup content */
@@ -433,3 +435,83 @@ code[class*=language-], pre[class*=language-] {
  
 }
 
+.contact-icons {
+  display: flex;
+  justify-content: center;
+ 
+  margin-top: 2rem;
+}
+
+.contact-link {
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  fill: #0984e3;
+  transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+.contact-link:hover .contact-icon {
+  fill: #075088;
+  transform: scale(1.15);
+ 
+}
+
+.contact-details {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #333;
+}
+
+.contact-details a {
+  color: #0984e3;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+  color: #075088;
+}
+
+/* Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.contact-details {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.contact-details p {
+  margin: 0 !important;
+  font-size: 1rem;
+}
+
+.contact-details a {
+  color: #0984e3;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+  color: #075088;
+}
