@@ -423,6 +423,7 @@ code[class*=language-], pre[class*=language-] {
 .close-btn{
   padding: .4rem;
   border:none !important;
+  margin-top: 10px !important;
  
 }
 
