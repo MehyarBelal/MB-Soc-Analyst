@@ -419,3 +419,15 @@ code[class*=language-], pre[class*=language-] {
   padding: 0.5rem !important;
   text-shadow: none !important;
 }
+
+.close-btn{
+  padding: .4rem;
+  border:none !important;
+ 
+}
+
+.close-btn:hover{
+  background-color: #0984e3;
+  color: white !important; 
+ 
+}
