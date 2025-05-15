@@ -610,7 +610,7 @@ color:#0984e3;
   }
   .container {
     width: 95%;
-    padding: 1em !important;
+
   }
 
   .hero-header h1 {
@@ -698,6 +698,8 @@ img {
     font-size: 15px;
   }
 
-
+.intro p{
+  font-size: 14px;
+}
 
 }
