@@ -891,7 +891,7 @@ body{
   .contact-box {
     width: 51%;
     padding: 1rem;
-    max-width: 50% !important;  /* this ensures it doesn't stretch beyond screen */
+    max-width: 30% !important;  /* this ensures it doesn't stretch beyond screen */
   }
 
   .contact-icon {
