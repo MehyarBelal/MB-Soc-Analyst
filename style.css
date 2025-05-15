@@ -816,7 +816,7 @@ p{
 
   padding: 1.5rem !important;
   margin: 2rem auto !important;
-  width: 100%;
+  width: 50%;
   max-width: 400px !important;
   background-color: #fff;
   text-align: center !important;
@@ -885,7 +885,7 @@ body{
 
 @media screen and (max-width: 600px) {
   .contact-box {
-    width: 90%;
+    width: 50%;
     padding: 1rem;
     max-width: 50% !important;  /* this ensures it doesn't stretch beyond screen */
   }
