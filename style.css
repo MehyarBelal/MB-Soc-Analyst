@@ -204,7 +204,6 @@ text-align: center !important;
   width: 100%;
   padding: 1rem !important;
   margin: 0 auto; /* center in parent */
-  border: 1px solid black;
   background-color: #27292b;
   color: white;
   text-align: center;
@@ -567,7 +566,7 @@ code[class*=language-], pre[class*=language-] {
   padding: 3rem 1rem;
   background-color: #27292b;
   color: white;
- ;
+
 }
 
 .hero-header h1 {
@@ -877,5 +876,5 @@ box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 
 body{
   display:flex;
-  flex-direction:column;
+  flex-direction: column;
 }
