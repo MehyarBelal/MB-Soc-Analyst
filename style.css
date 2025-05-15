@@ -936,3 +936,8 @@ body{
 .dashboard-content {
   padding-top: 4.2rem !important; /* Push content down */
 }
+
+
+hr{
+  width: 100% !important;
+}
