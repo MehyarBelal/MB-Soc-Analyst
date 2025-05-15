@@ -759,4 +759,8 @@ p{
   overflow: hidden;
 }
 
+.close-btn{
+  margin-top: 1rem;
+}
+
 }
