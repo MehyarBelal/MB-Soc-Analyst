@@ -754,4 +754,9 @@ p{
     top: 10px !important;
     right: 10px !important;
   }
+
+  body.popup-open {
+  overflow: hidden;
+}
+
 }
