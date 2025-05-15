@@ -932,7 +932,7 @@ body{
 .close-btn {
   top: 0.5rem !important;
   right: 1rem !important;
-  font-size: 1.5rem !important;   /* Make it bigger */
+   /* Make it bigger */
   padding: 0.1rem !important;
   z-index: 1100 !important;
 }
