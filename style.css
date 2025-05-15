@@ -898,4 +898,24 @@ body{
   .contact-details p {
     font-size: 14px;
   }
+  .dashboard-content {
+  padding-top: 3.5rem !important; /* increase top padding */
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: #333;
+  cursor: pointer;
+  z-index: 1050;
+  padding: 0.2rem;
+}
+.close-btn:hover {
+  color: #e74c3c;
+}
+
 }
