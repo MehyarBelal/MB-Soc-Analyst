@@ -885,7 +885,7 @@ body{
 
 @media screen and (max-width: 600px) {
   .contact-box {
-    width: 50%;
+    width: 51%;
     padding: 1rem;
     max-width: 50% !important;  /* this ensures it doesn't stretch beyond screen */
   }
