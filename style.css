@@ -132,7 +132,7 @@ background: none !important;
   }
 
   .toggle-btn {
-    background-color: #0984e3 !important;
+    background-color: #1E88E5 !important;
     color: rgb(255, 255, 255) !important;
     border: none;
     padding: 10px;
@@ -167,7 +167,7 @@ text-align: center !important;
   }
 
   section button:hover{
-    background-color:#0984e3;
+    background-color:#1E88E5;
     color:white;
   }
 
@@ -228,7 +228,7 @@ footer, .boxes{
 
   .header h4{
   
-    color:#0984e3
+    color:#1E88E5;
     
   }
 
@@ -245,7 +245,7 @@ footer, .boxes{
      padding: 0.3rem !important;
    
      margin-top: 1.5rem;
-     fill:#0984e3;
+     fill:#1E88E5;
 
 }
 
@@ -309,7 +309,7 @@ svg:hover{
 
 /* Button hover effect */
 .toggle-btn:hover {
-  background-color: #0984e3;
+  background-color: #1E88E5;
   color: white;
 }
 
@@ -443,7 +443,7 @@ code[class*=language-], pre[class*=language-] {
 }
 
 .close-btn:hover{
-  background-color: #0984e3;
+  background-color: #1E88E5;
   color: white !important; 
  
 }
@@ -480,7 +480,7 @@ code[class*=language-], pre[class*=language-] {
 }
 
 .contact-details a {
-  color: #0984e3;
+  color: #1E88E5;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -520,7 +520,7 @@ code[class*=language-], pre[class*=language-] {
 }
 
 .contact-details a {
-  color: #0984e3;
+  color: #1E88E5;
   text-decoration: none;
   transition: color 0.3s ease;
 }
@@ -539,7 +539,7 @@ code[class*=language-], pre[class*=language-] {
 .arrow-icon {
   width: 40px;
   height: 40px;
-  fill: #0984e3;
+  fill: #1E88E5;
   animation: bounce 1.5s infinite;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -610,7 +610,7 @@ code[class*=language-], pre[class*=language-] {
 
 strong {
   font-weight: bolder;
-color:#0984e3;
+color:#1E88E5;
 
 }
 
@@ -680,7 +680,7 @@ img {
 
 
 .toggle-btn {
-    background-color: #0984e3 !important;
+    background-color: #1E88E5 !important;
     color: #fff !important;
     border: none;
     padding: 10px 16px;
@@ -698,7 +698,7 @@ img {
 
 
 .toggle-btn:hover {
-    background-color: #075088 !important;
+    background-color: #1E88E5 !important;
     transform: translateY(-2px);
 }
 
