@@ -882,3 +882,20 @@ body{
   display:flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 600px) {
+  .contact-box {
+    width: 90%;
+    padding: 1rem;
+    max-width: 70%;  /* this ensures it doesn't stretch beyond screen */
+  }
+
+  .contact-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .contact-details p {
+    font-size: 14px;
+  }
+}
