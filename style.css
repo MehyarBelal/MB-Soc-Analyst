@@ -594,3 +594,9 @@ code[class*=language-], pre[class*=language-] {
   visibility: visible;
   animation: popupFadeIn 0.3s ease-out;
 }
+
+
+strong {
+  font-weight: bolder;
+  color:#0984e3;
+}
