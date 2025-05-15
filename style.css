@@ -698,8 +698,8 @@ img {
     font-size: 15px;
   }
 
-.intro p{
-  font-size: 14px;
+p{
+  font-size: 14px !important;
 }
 
 }
