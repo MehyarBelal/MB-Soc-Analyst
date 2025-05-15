@@ -233,8 +233,8 @@ footer, .boxes{
   }
 
   svg {
-    width: 35px !important;
-    height: 35px !;
+    width: 28px !important;
+    height: 28px !;
      /* Set the color for the icons */
      margin: 0.5rem !important;
      padding: 0.3rem !important;
@@ -430,9 +430,10 @@ code[class*=language-], pre[class*=language-] {
 }
 
 .close-btn{
-  padding: .4rem;
+  padding: .3rem;
   border:none !important;
   margin-top: 10px !important;
+  box-shadow: none !important;
  
 }
 
@@ -803,4 +804,9 @@ p{
   .contact-details a {
     font-size: 0.9rem !important;
   }
+}
+
+
+.contact-icons {
+border: 1px solid black;
 }
