@@ -851,3 +851,20 @@ box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     font-size: 0.95rem !important;
   }
 }
+
+
+@media screen and (max-width: 600px) {
+  .contact-box {
+    padding: 1rem;
+    width: 90%;
+  }
+
+  .contact-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .contact-details p {
+    font-size: 14px;
+  }
+}
