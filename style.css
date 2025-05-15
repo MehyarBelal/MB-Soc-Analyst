@@ -807,6 +807,47 @@ p{
 }
 
 
-.contact-icons {
-border: 1px solid black;
+.contact-box {
+
+
+  padding: 1.5rem !important;
+  margin: 2rem auto !important;
+  width: 100%;
+  max-width: 500px !important;
+  background-color: #fff;
+  text-align: center !important;
+  border-radius: 10px !important;
+box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  background-color: #27292b;
+}
+
+/* Slide-up on scroll animation */
+.fade-slide-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile optimization */
+@media screen and (max-width: 768px) {
+  .contact-box {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .contact-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .contact-details p,
+  .contact-details a {
+    font-size: 0.95rem !important;
+  }
 }

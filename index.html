@@ -480,20 +480,23 @@ index=botsv3 sourcetype="cisco:asa" "Deny"
      
 <br>
 <br>
-<div class="contact-icons fade-in">
-  <a href="mailto:mehyarbelal1@hotmail.com" class="contact-link" target="_blank" title="Email Me">
-    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8 327.4 338.6c-23.7 20.3-58.1 20.3-81.8 0L9.7 190.8C3.5 185.7 0 178.5 0 171V144c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v27c0 7.5-3.5 14.7-9.7 19.8zM0 204.3v187.4c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V204.3l-165.9 142c-35.5 30.3-88.8 30.3-124.3 0L0 204.3z"/></svg>
-  </a>
-  
-  <a href="https://www.linkedin.com/in/mehyar-belal-381710117/" class="contact-link" target="_blank" title="LinkedIn Profile">
-    <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zm-46.44-339C24.26 109 0 84.75 0 54.54 0 24.32 24.26 0 54.54 0c30.28 0 54.54 24.26 54.54 54.54 0 30.21-24.26 54.46-54.54 54.46zM447.9 448h-92.7V302.4c0-34.7-12.4-58.4-43.5-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.8 13.2-2.8 20.9V448H172.9s1.2-269.4 0-297h92.7v42.1c12.3-19 34.3-46.1 83.4-46.1 60.9 0 106.6 39.8 106.6 125.3V448z"/></svg>
-  </a>
-</div>
 
-<!-- Contact Info Text -->
-<div class="contact-details fade-in" style="text-align: center;">
-  <p><strong>Email:</strong> <a href="mailto:mehyarbelal1@hotmail.com">mehyarbelal1@hotmail.com</a></p>
-  <p><strong>Phone:</strong> <a href="tel:+61412621519">0412 621 519</a></p>
+
+<div class="contact-box fade-slide-up">
+  <div class="contact-icons">
+    <a href="mailto:mehyarbelal1@hotmail.com" class="contact-link" target="_blank" title="Email Me">
+      <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.3 190.8 327.4 338.6c-23.7 20.3-58.1 20.3-81.8 0L9.7 190.8C3.5 185.7 0 178.5 0 171V144c0-26.5 21.5-48 48-48h416c26.5 0 48 21.5 48 48v27c0 7.5-3.5 14.7-9.7 19.8zM0 204.3v187.4c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V204.3l-165.9 142c-35.5 30.3-88.8 30.3-124.3 0L0 204.3z"/></svg>
+    </a>
+    
+    <a  href="https://www.linkedin.com/in/mehyar-belal-381710117/" class="contact-link" target="_blank" title="LinkedIn Profile">
+      <svg style="color:white" class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M100.28 448H7.4V148.9h92.88zm-46.44-339C24.26 109 0 84.75 0 54.54 0 24.32 24.26 0 54.54 0c30.28 0 54.54 24.26 54.54 54.54 0 30.21-24.26 54.46-54.54 54.46zM447.9 448h-92.7V302.4c0-34.7-12.4-58.4-43.5-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.8 13.2-2.8 20.9V448H172.9s1.2-269.4 0-297h92.7v42.1c12.3-19 34.3-46.1 83.4-46.1 60.9 0 106.6 39.8 106.6 125.3V448z"/></svg>
+    </a>
+  </div>
+
+  <div class="contact-details">
+    <p><strong>Email:</strong> <a  href="mailto:mehyarbelal1@hotmail.com" > <span style="color:white">mehyarbelal1@hotmail.com</span></a></p>
+    <p><strong>Phone:</strong> <a  href="tel:+61412621519" ><span style="color:white">0412 621 519</span></a></p>
+  </div>
 </div>
 
 <br>
@@ -685,7 +688,26 @@ if (overlay) {
 }
 
 </script>
-   
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
+
+  document.querySelectorAll('.fade-slide-up').forEach(el => {
+    observer.observe(el);
+  });
+});
+</script>
+
 
 
 <footer class="site-footer fade-in">
