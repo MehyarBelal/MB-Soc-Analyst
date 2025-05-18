@@ -435,7 +435,7 @@ code[class*=language-], pre[class*=language-] {
 }
 
 .close-btn{
-  padding: .3rem;
+  padding: .3rem !important;
   border:none !important;
   margin-top: 10px !important;
   box-shadow: none !important;
@@ -916,7 +916,7 @@ body{
   color: #333;
   cursor: pointer;
   z-index: 1050;
-  padding: 0.2rem;
+  padding: 0.3rem;
 }
 .close-btn:hover {
   color: #e74c3c;
@@ -933,7 +933,7 @@ body{
   top: 0.5rem !important;
   right: 1rem !important;
    /* Make it bigger */
-  padding: 0.1rem !important;
+  padding: 0.3rem !important;
   z-index: 1100 !important;
 }
 
