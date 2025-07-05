@@ -1026,9 +1026,9 @@ ul {
 
 
 .preloader-text {
-  font-size: 20px;
+  font-size: 24px;
   color: #ffffff;
-  font-family: 'Poppins', sans-serif;
+
   margin-bottom: 25px;
   letter-spacing: 1px;
   text-decoration: none;      /* 👈 removes underline */
