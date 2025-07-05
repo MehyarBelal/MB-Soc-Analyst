@@ -992,7 +992,7 @@ ul {
   }
 
   .loader:after {
-    background: #3B82F6; /* Blue */
+    background: #2196F3; /* Blue */
     animation: right 900ms infinite ease-in-out;
   }
 
@@ -1013,7 +1013,7 @@ ul {
   }
 
   #preloader {
-  background: #3B82F6; /* Soft blue background */
+  background: #27292b; /* Soft blue background */
 }
 
 .loader:before {
@@ -1021,7 +1021,7 @@ ul {
 }
 
 .loader:after {
-  background: #93C5FD; /* Lighter blue dot */
+  background: #2196F3; /* Lighter blue dot */
 }
 
 
