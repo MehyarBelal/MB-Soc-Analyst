@@ -809,7 +809,9 @@ p{
     font-size: 0.9rem !important;
   }
 }
-
+hr{
+  width: 50em !important;
+}
 
 .contact-box {
 
