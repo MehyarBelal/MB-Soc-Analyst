@@ -943,7 +943,9 @@ body{
 }
 
 
-
+hr{
+  width: 50em !important;
+}
 
 ul {
   list-style-type: none !important;
@@ -1041,4 +1043,11 @@ ul {
 
 
 
+
+@media screen and (max-width: 768px) {
+hr{
+  width: 22em !important;
+}
+
+}
 
