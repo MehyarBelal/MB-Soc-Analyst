@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My First Real Alert Triage | Mehyar Belal</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #27292b;
+      color: #f4f4f4;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+
+    .container {
+      background: #fff;
+      color: #222;
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #111;
+    }
+
+    .date {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      color: #2196F3;
+    }
+
+    a.back {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #2196F3;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a.back:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚨 My First Real Alert Triage in a CSOC</h1>
+    <p class="date">Posted: July 2025</p>
+
+    <p>In my first month as a SOC Analyst, I was assigned to monitor PowerShell behavior using Splunk. One alert stood out: an encoded PowerShell command being executed under a user session with admin privileges. It was flagged by a correlation rule based on MITRE ATT&CK T1059.001.</p>
+
+    <h3>🔍 Detection</h3>
+    <p>I used Splunk to inspect the raw event and then reviewed the process tree using endpoint logs. The parent process was Outlook, followed by a suspicious child PowerShell process. This raised red flags immediately.</p>
+
+    <h3>🚦 Triage Strategy</h3>
+    <p>I pivoted through similar historical events and identified a pattern — the same user account had executed macros a few hours earlier. It looked like a phishing payload had succeeded. I quickly escalated it to IR.</p>
+
+    <h3>✅ Outcome</h3>
+    <p>The IR team confirmed it was a malicious payload. As a result, the account was disabled, and endpoint isolation was triggered via our EDR. It was my first time catching and escalating something critical — a moment I won’t forget.</p>
+
+    <a href="../blog.html" class="back">← Back to Blog</a>
+  </div>
+</body>
+</html>
