@@ -504,11 +504,9 @@ index=botsv3 sourcetype="cisco:asa" "Deny"
       </p>
 
       <!-- Animated Link -->
-      <a href="https://medium.com/@mehyarbelal460/why-i-built-my-own-soc-before-getting-my-first-cybersecurity-role-1aed113fe650"
+          <a href="https://medium.com/@mehyarbelal460/why-i-built-my-own-soc-before-getting-my-first-cybersecurity-role-1aed113fe650"
          target="_blank"
-         style=" margin:15px !important; color:#00a8ff; text-decoration:none; font-weight:600; display:inline-block; font-family:'Poppins',sans-serif; transition:all 0.3s ease; position:relative;">
-         → Read on Medium
-      </a>
+         class="blog-link" style="margin: 15px !important; ">→ Read on Medium</a>
     </div>
   </div>
 
@@ -516,6 +514,40 @@ index=botsv3 sourcetype="cisco:asa" "Deny"
 <br>
   <hr>
   <br>
+
+
+  <style>
+  /* Smooth link animation */
+  .blog-link {
+    color: #00a8ff;
+    text-decoration: none;
+    font-weight: 800;
+    display: inline-block;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    transition: color 0.3s ease;
+  }
+
+  /* Sliding underline */
+  .blog-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background-color: #00a8ff;
+    transition: width 0.3s ease;
+  }
+
+  .blog-link:hover {
+    color: #66cfff;
+  }
+
+  .blog-link:hover::after {
+    width: 100%;
+  }
+</style>
 
                 <h1 class="title">Get in Touch</h1>
      
